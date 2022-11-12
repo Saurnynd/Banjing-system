@@ -1,26 +1,29 @@
 package cinema;
+
 import java.util.Scanner;
+
 public class Cinema {
 
-    public static void printSeats(char[][] cinema){
+    public static void printSeats(char[][] cinema) {
         int rows = cinema.length;
         int colums = cinema[0].length;
         System.out.println("Cinema:");
+
         System.out.print("  ");
-        for (int i = 1; i <= colums;i++){
+        for (int i = 1; i <= colums; i++) {
             System.out.print(i + " ");
         }
-        for(int i = 0; i < rows; i++){
+        for (int i = 0; i < rows; i++) {
             System.out.println();
             System.out.print(i + 1);
-            for(int j = 0; j < colums; j++){
+            for (int j = 0; j < colums; j++) {
                 System.out.print(" " + cinema[i][j]);
             }
         }
         System.out.println();
     }
 
-    public static void buyTicket(char[][] cinema){
+    public static void buyTicket(char[][] cinema) {
         int rows = cinema.length;
         int colums = cinema[0].length;
         Scanner scanner = new Scanner(System.in);
@@ -30,7 +33,7 @@ public class Cinema {
             int ticketRow = scanner.nextInt();
             System.out.println("Enter a seat number in that row:");
             int ticketColum = scanner.nextInt();
-            if (ticketColum <=0 || ticketColum > colums || ticketRow <= 0 || ticketRow > rows){
+            if (ticketColum <= 0 || ticketColum > colums || ticketRow <= 0 || ticketRow > rows) {
                 System.out.println("Wrong input!");
             } else if (cinema[ticketRow - 1][ticketColum - 1] == 'B') {
                 System.out.println("That ticket has already been purchased!");
@@ -49,20 +52,20 @@ public class Cinema {
 
                 cinema[ticketRow - 1][ticketColum - 1] = 'B';
             }
-        }while (isNotChoosen);
+        } while (isNotChoosen);
     }
 
-    public static  void printStatistics(char[][] cinema){
+    public static void printStatistics(char[][] cinema) {
         int rows = cinema.length;
         int colums = cinema[0].length;
         int counter = 0;
         int currentIncome = 0;
-        for(int i = 0; i < rows; i++){
-            for(int j = 0; j < colums; j++){
-               if(cinema[i][j] == 'B'){
-                   counter++;
-                   currentIncome += rows * colums <= 60? 10: rows / 2 >= i + 1? 10: 8;
-               }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < colums; j++) {
+                if (cinema[i][j] == 'B') {
+                    counter++;
+                    currentIncome += rows * colums <= 60 ? 10 : rows / 2 >= i + 1 ? 10 : 8;
+                }
             }
         }
         int totalIncome;
@@ -78,10 +81,11 @@ public class Cinema {
         System.out.println("Current income: $" + currentIncome);
         System.out.println("Total income: $" + totalIncome);
     }
-    public static void startMenu(char[][] cinema){
+
+    public static void startMenu(char[][] cinema) {
         boolean isContinue = true;
         Scanner scanner = new Scanner(System.in);
-        while(isContinue){
+        while (isContinue) {
             System.out.println("1. Show the seats");
             System.out.println("2. Buy a ticket");
             System.out.println("3. Statistics");
@@ -107,7 +111,7 @@ public class Cinema {
         }
     }
 
-    public static char[][] createCinema(){
+    public static char[][] createCinema() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the number of rows:");
         int rows = scanner.nextInt();
@@ -115,8 +119,8 @@ public class Cinema {
         int colums = scanner.nextInt();
 
         char[][] cinema = new char[rows][colums];
-        for(int i = 0; i < rows; i++){
-            for(int j = 0; j < colums; j++){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < colums; j++) {
                 cinema[i][j] = 'S';
             }
         }
